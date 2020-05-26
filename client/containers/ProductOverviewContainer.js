@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import ProductOverview from '../components/ProductOverview.jsx';
+import ProductOverview from '../components/ProductOverviewComponents/ProductOverview.jsx';
 import {
   getProductData,
   getStylesData,
@@ -17,8 +17,9 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
   return {
     productInfo: state.productInfo.productInfo,
-    product_id: state.app.product_id,
+    productId: state.app.product_id,
     stylesInfo: state.productInfo.stylesInfo,
+    averageRating: state.reviews.avg_rating,
   };
 };
 

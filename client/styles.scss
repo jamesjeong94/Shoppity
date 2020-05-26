@@ -1,15 +1,650 @@
-.ImageGallery {
+.html {
+  font-family: Verdana;
 }
 
-.ratingsContainer {
-  float: left;
-  width: 30%;
-}
-.reviewsContainer {
-  float: right;
-  width: 50%;
+.MainProduct {
+  display: flex;
+  width: 100%;
+  height: 650px;
+  align-self: flex-start;
+  flex-flow: row wrap;
+  justify-content: center;
+
+  .TopInfo {
+    display: flex;
+    width: 75%;
+    height: 80%;
+    align-self: flex-start;
+    align-content: center;
+    justify-content: space-evenly;
+
+    .ImageGallery {
+      display: flex;
+      background-color: lightgray;
+      margin-right: 15px;
+
+      .Gallery {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        background-color: lightgray;
+        flex-direction: row;
+
+        .sideImages {
+          order: 0;
+          display: flex;
+          flex-direction: column;
+          margin-top: 10px;
+          width: 8%;
+          height: 8%;
+
+          .sideImage {
+            margin: 10px 15px 5px 15px;
+            border: solid 3px transparent;
+          }
+
+          .sideImage:hover {
+            cursor: pointer;
+            border: solid 3px gray;
+          }
+        }
+
+        #previousPicButton {
+          order: 1;
+          width: 12%;
+          height: 10%;
+          align-self: center;
+          border-radius: 10%;
+          background-color: transparent;
+          font-size: large;
+          margin-left: 25px;
+          border: none;
+          outline: none;
+        }
+
+        #previousPicButton:hover {
+          background-color: rgba($color: white, $alpha: 0.4);
+        }
+
+        #previousPicButton:active {
+          background-color: rgba($color: white, $alpha: 0.6);
+        }
+
+        #MainImage {
+          order: 2;
+          display: block;
+          width: 75%;
+          height: 100%;
+          object-fit: contain;
+          margin: auto;
+        }
+
+        #nextAndFullButtons {
+          order: 3;
+          display: flex;
+          flex-direction: column;
+          width: 20%;
+          height: 100%;
+
+          #fullscreen {
+            width: 80%;
+            height: 10%;
+            justify-self: center;
+            align-self: center;
+            border-radius: 10%;
+            background-color: transparent;
+            border: none;
+            outline: none;
+            margin-right: 10px;
+            margin-top: 10px;
+          }
+
+          #fullscreen:hover {
+            background-color: rgba($color: white, $alpha: 0.4);
+          }
+
+          #fullscreen:active {
+            background-color: rgba($color: white, $alpha: 0.6);
+          }
+
+          #nextPicButton {
+            width: 70%;
+            height: 10%;
+            align-self: flex-end;
+            border-radius: 10%;
+            margin-top: 172px;
+            margin-right: 10px;
+            background-color: transparent;
+            font-size: large;
+            border: none;
+            outline: none;
+          }
+
+          #nextPicButton:hover {
+            background-color: rgba($color: white, $alpha: 0.4);
+          }
+
+          #nextPicButton:active {
+            background-color: rgba($color: white, $alpha: 0.6);
+          }
+        }
+      }
+    }
+
+    .InfoStyleEvents {
+      display: flex;
+      flex-direction: column;
+      width: 35%;
+      height: 100%;
+      margin-right: 25px;
+      justify-content: space-evenly;
+
+      a:hover {
+        cursor: pointer;
+      }
+
+      .NamePrice {
+        order: 0;
+        width: 100%;
+
+        .NameAndSocial {
+          margin-bottom: 10px;
+
+          img:hover {
+            cursor: pointer;
+          }
+        }
+      }
+
+      .StyleSelector {
+        order: 1;
+        width: 90%;
+        flex-direction: row wrap;
+
+        #StyleImage {
+          width: 20%;
+          height: 60px;
+          border-radius: 50%;
+          border: solid 3px transparent;
+          margin: 10px 10px 10px 0px;
+        }
+        #StyleImage:hover {
+          border: solid 3px gray;
+          cursor: pointer;
+        }
+      }
+
+      .SizeQuantityCart {
+        order: 2;
+        width: 90%;
+
+        #sizes {
+          width: 60%;
+          height: 40px;
+          font-size: 14px;
+          padding: 10px;
+          float: left;
+        }
+
+        #sizes:hover {
+          cursor: pointer;
+        }
+
+        #quantities {
+          width: 30%;
+          height: 40px;
+          font-size: 14px;
+          padding: 10px;
+          float: right;
+        }
+
+        #quantities:hover {
+          cursor: pointer;
+        }
+
+        #addToCart {
+          width: 100%;
+          height: 40px;
+          font-size: 14px;
+          padding: 10px;
+          margin: 20px 10px 10px 0px;
+        }
+      }
+    }
+  }
+
+  .BottomDescription {
+    display: flex;
+    align-self: flex-end;
+    justify-content: center;
+    width: 75%;
+    height: 20%;
+
+    #description {
+      justify-content: center;
+    }
+  }
 }
 
 .review {
   border-bottom: 1px black solid;
+  margin-top: 12px;
+  div {
+    margin-bottom: 4px;
+  }
+}
+
+.clickedRating {
+  background-color: gray;
+}
+
+.response {
+  background-color: #f0f0f0;
+  padding: 10px 5px 10px 15px;
+}
+
+// related products
+
+.carousel-container {
+  display: flex;
+  justify-content: center;
+}
+
+.related {
+  display: flex;
+  justify-content: center;
+}
+
+.arrow {
+  height: 450px;
+  width: 50px;
+  border: 1px solid;
+  background-color: lightgray;
+}
+
+.arrow:hover {
+  opacity: 75%;
+}
+
+.btn-arrow {
+  font-size: x-large;
+  margin: 0;
+  position: relative;
+  top: 50%;
+  left: 25%;
+}
+
+.star-btn {
+  font-size: medium;
+}
+
+.remove-btn {
+  font-size: medium;
+}
+
+.btn-overlap {
+  position: absolute;
+  transform: translate(-100%, 0%);
+}
+
+.rel-prod-img {
+  height: 450px;
+  width: 300px;
+  object-fit: cover;
+}
+
+.rel-prod-img:hover {
+  opacity: 0.75;
+}
+
+.add-outfit-container {
+  height: 450px;
+  width: 300px;
+  border: 1px solid;
+}
+
+.outfit {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-outfit {
+  margin: 0;
+  position: relative;
+  top: 50%;
+  left: 25%;
+}
+
+.modal-show-rel-prod {
+  display: block;
+}
+
+.modal-hide-rel-prod {
+  display: none;
+}
+
+.modal-main-rel-prod {
+  position: fixed;
+  background: rgb(172, 160, 160);
+  width: 80%;
+  height: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+  z-index: 2;
+}
+
+#modal {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid;
+}
+
+#modal thead {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4caf50;
+  color: white;
+}
+
+#modal tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#modal tr {
+  border: 1px solid black;
+}
+
+// ratings, reviews, Q&A
+
+.modal {
+  overflow-y: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.modal-main {
+  position: fixed;
+  background: white;
+  width: 60%;
+  height: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+}
+
+.modal-show {
+  display: block;
+}
+
+.modal-hide {
+  display: none;
+}
+
+.characteristics {
+  table-layout: fixed;
+  width: 100%;
+}
+
+.addReviewField {
+  display: block;
+}
+
+.warning {
+  border: 1px solid red;
+  border-radius: 15%;
+  padding: 5px;
+}
+
+.QAContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
+  h3 {
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .QASearch {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid black;
+    margin-bottom: 20px;
+    transition: 0.2s;
+    &:focus {
+      transform: scale(1.05, 1.05);
+    }
+  }
+  .QASection {
+    width: 55%;
+  }
+  .QAAnswer {
+    margin: 2px 0px 10px 0px;
+  }
+}
+
+.QAEntry {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin inline-items {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.QAPhotos {
+  @include inline-items;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.QAHeader {
+  @include inline-items;
+  margin-bottom: 10px;
+}
+.QAFooter {
+  @include inline-items;
+}
+
+input:focus {
+  outline: none;
+}
+
+.QAQHelpful {
+  width: 100%;
+  @include inline-items;
+  justify-content: space-between;
+}
+.AnswerSection {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+.RRContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 10px;
+  min-height: 700px;
+}
+
+.RRSection {
+  width: 55%;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.reviewsContainer {
+  width: 65%;
+}
+
+.reviewHeader {
+  @include inline-items;
+  justify-content: space-between;
+}
+
+.ratingDisplay {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 5px;
+  .avg-rating {
+    font-size: 3em;
+  }
+
+  .avg-rating-star {
+    padding-top: 10px;
+    margin-left: 6px;
+  }
+}
+
+.helpfulContainer {
+  @include inline-items;
+  padding-left: 5px;
+  div {
+    margin-right: 6px;
+  }
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.fs32 {
+  font-size: 1.2em;
+}
+
+.bottom-btn {
+  padding: 12px 24px;
+  margin: 5px 10px 5px 10px;
+  border-radius: 2px;
+  border: 1px solid black;
+  background-color: #ffffff;
+  opacity: 0.6;
+  transition: 0.2s;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  &:hover {
+    opacity: 1;
+    transform: scale(1.1, 1.1);
+  }
+  &:after {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+  &:after:hover {
+    opacity: 1;
+  }
+}
+
+.userDate {
+  color: #808080;
+}
+
+.reviewsBtnRow {
+  margin-top: 20px;
+  @include inline-items;
+}
+
+.sectionTitle {
+  font-size: 1.3em;
+  margin-bottom: 15px;
+  margin-top: 20px;
+}
+.left-shift {
+  margin-right: 6px;
+}
+
+.ratingRow > td {
+  padding: 0px 10px 6px 0px;
+}
+
+.modalTitle {
+  font-size: 1.6em;
+  margin-top: 12px;
+}
+.modalSubtitle {
+  font-size: 1.3em;
+  margin-top: 5px;
+}
+
+.textInput {
+  width: 80%;
+}
+
+.question {
+  width: 70%;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.modal-btns {
+  @include inline-items;
+  justify-content: center;
+  opacity: 0.7;
+}
+
+input[type='radio'] {
+  display: inline-block;
+  margin: 0 10px 0 10px;
+}
+
+.gauge-arrow {
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 10px solid black;
+}
+
+.characteristics-bar {
+  margin-bottom: 10px;
+  .bar-gauge {
+    width: 100%;
+    margin-top: 5px;
+    .arrow-pos {
+      padding-top: 2px;
+      transform: translateX(-50%);
+    }
+  }
+}
+
+.singleline-input {
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.body-input {
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  width: 100%;
+  height: 20%;
+}
+
+.fileContainer {
+  padding: 0;
+}
+
+.noCount {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }

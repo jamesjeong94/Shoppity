@@ -69,38 +69,55 @@ export const getRelatedProducts = (product_id) => {
     .catch(handleError);
 };
 
-// nested API call for related products
+// nested API call for related products component
 export const getRelatedProductMeta = (productId) => {
   let results = getRelatedProducts(productId).then((relatedProductArray) => {
-    return relatedProductArray.map((relatedProduct) => {
-      return getProductInfo(relatedProduct);
-    });
+    return [...new Set(relatedProductArray)]
+      .filter((prod) => prod !== productId && prod !== 10)
+      .map((relatedProduct) => {
+        return getSingleProductInfo(relatedProduct);
+      });
   });
 
   return results.then((promiseArray) => {
     return Promise.all(promiseArray).then((data) => {
-      return data;
+      return data.filter((item) => {
+        return item[1].results[0].photos[0].thumbnail_url !== null;
+      });
     });
   });
 };
 
-// let final = data.map((item) => {
-//   return getProductStyles(item.id);
-// });
-// Promise.all(final).then((productStyles) => {
-//   // console.log(`PRODUCT STYLES: `, productStyles);
-//   return productStyles.map((product) => {
-//     try {
-//       console.log(`PRODUCT: `, product.results[0].photos);
-//     } catch (err) {
-//       console.log(`ERROR`, err);
-//     }
-//     return product.results[0];
-//   });
-//   // return productStyles;
-// });
-// // console.log(`STYLES: `, final);
-// console.log(`DATA`, data);
+// nested API call for getting single product info
+export const getSingleProductInfo = (productId) => {
+  const info = axios.get(`${baseUrl}/products/${productId}/`);
+  const style = axios.get(`${baseUrl}/products/${productId}/styles/`);
+  const ratings = axios.get(`${baseUrl}/reviews/${productId}/list/`);
+  return axios
+    .all([info, style, ratings])
+    .then(
+      axios.spread((...response) => {
+        const responseOne = response[0].data;
+        const responseTwo = response[1].data;
+        const responseThree = response[2].data;
+        return [responseOne, responseTwo, responseThree];
+      })
+    )
+    .catch(handleError);
+};
+
+// nested API call for comparison modal
+export const comparison = (productId1, productId2) => {
+  let prod1 = axios.get(`${baseUrl}/products/${productId1}/`);
+  let prod2 = axios.get(`${baseUrl}/products/${productId2}/`);
+  return axios.all([prod1, prod2]).then(
+    axios.spread((...response) => {
+      const responseOne = response[0].data;
+      const responseTwo = response[1].data;
+      return [responseOne, responseTwo];
+    })
+  );
+};
 
 // <-------------------------------------------QA Queries------------------------------------------------>
 
@@ -187,9 +204,13 @@ export const reportAnswer = (answer_id) => {
 // <------------------------------------Rating and Review Queries-------------------------------------->
 
 // Should return object with product, page-number, review-count, and array of review objects
-export const getReviews = (product_id) => {
+export const getReviews = (product_id, sort) => {
   return axios
-    .get(`${baseUrl}/reviews/${product_id}/list/`)
+    .get(`${baseUrl}/reviews/${product_id}/list/`, {
+      params: {
+        sort: sort,
+      },
+    })
     .then(({ data }) => {
       return data.results;
     })
@@ -208,10 +229,13 @@ export const getReviewMeta = (product_id) => {
 
 // Should add review to single product CHECK API DOC FOR post PARAMS
 export const addReview = (product_id, post) => {
-  return axios
-    .post(`${baseUrl}/reviews/${product_id}/`, post)
-    .then(({ data }) => {
-      return data;
+  return axios({
+    url: `${baseUrl}/reviews/${product_id}/`,
+    method: 'post',
+    data: post,
+  })
+    .then(() => {
+      console.log('Successfully posted review');
     })
     .catch(handleError);
 };
